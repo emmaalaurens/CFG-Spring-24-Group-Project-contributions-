@@ -8,4 +8,3 @@ I still tried my best as I was unable to attend a number of meetings - I asked m
 
 I have detailed what I attempted to contribute in this git repo. 
 
-P
