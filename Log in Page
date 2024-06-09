@@ -1,0 +1,164 @@
+Structure and coding of the log in page - taken from the designs and wireframes the team constructed. 
+
+I also restructured the components so that they reflected best practice. 
+
+I ensured that the log in page functioned in a number of ways that would improve UX:
+The user had to submit certain amounts in order to successfully 'log in' or 'sign up' - for example, they have to use an @ symbol in their email, and XX/XX/XXXX format for date of birth, their names have to be longer than three characters. 
+A pop up would instruct the user how to do this correctly. 
+I made sure the font and size if the text were visibile with the colour scheme. 
+
+
+
+// HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="circle">
+            <span class="pause">Pause</span>
+        </div>
+        <form id="loginForm">
+            <input type="text" id="fullName" placeholder="Full Name">
+            <small id="nameError" class="error"></small>
+            <input type="date" id="dob" placeholder="Date of Birth">
+            <small id="dobError" class="error"></small>
+            <input type="email" id="email" placeholder="Email">
+            <small id="emailError" class="error"></small>
+            <input type="password" id="password" placeholder="Password">
+            <small id="passwordError" class="error"></small>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+//CSS
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, lightpink, white);
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+.circle {
+    width: 150px;
+    height: 150px;
+    background-color: #ffb6c1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+}
+
+.pause {
+    color: red;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    width: 250px;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+}
+
+button {
+    width: 270px;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+}
+
+.error {
+    color: white;
+    font-size: 12px;
+    display: none;
+}
+
+
+
+//JS (script.js)
+
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Clear previous error messages
+    document.getElementById('nameError').style.display = 'none';
+    document.getElementById('dobError').style.display = 'none';
+    document.getElementById('emailError').style.display = 'none';
+    document.getElementById('passwordError').style.display = 'none';
+
+    let isValid = true;
+
+    const fullName = document.getElementById('fullName').value.trim();
+    if (fullName.length < 3) {
+        document.getElementById('nameError').textContent = 'Full Name must be at least 3 characters long';
+        document.getElementById('nameError').style.display = 'block';
+        isValid = false;
+    }
+
+    const dob = document.getElementById('dob').value.trim();
+    if (dob.length === 0) {
+        document.getElementById('dobError').textContent = 'Date of Birth is required';
+        document.getElementById('dobError').style.display = 'block';
+        isValid = false;
+    }
+
+    const email = document.getElementById('email').value.trim();
+    if (email.length < 3) {
+        document.getElementById('emailError').textContent = 'Email must be at least 3 characters long';
+        document.getElementById('emailError').style.display = 'block';
+        isValid = false;
+    }
+
+    const password = document.getElementById('password').value.trim();
+    if (password.length < 3) {
+        document.getElementById('passwordError').textContent = 'Password must be at least 3 characters long';
+        document.getElementById('passwordError').style.display = 'block';
+        isValid = false;
+    }
+
+    if (isValid) {
+        alert('Form submitted successfully!');
+        // Here you can add your form submission logic
+    }
+});
+
+
