@@ -1,0 +1,16 @@
+My conprehensive testing suite was based on the directories that I pushed based on best practice. It was to unit test using Jest the functionality of the backend. 
+I used Jest as it was already being used (so I was told) by another team member - and it works well with APIs as well as react applications. 
+
+Using node.js, I prepared a testing suite by updating the package.json to include a test 'scripts'. 
+
+I made a tests directory in the backend folder: 
+mkdir __tests__ 
+
+{
+  "scripts": {
+    "test": "jest"
+  }
+}
+
+in terminal: npm test
+
